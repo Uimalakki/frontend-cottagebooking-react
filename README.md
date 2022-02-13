@@ -1,4 +1,4 @@
-# A cottage booking form made with React
+# A simple cottage booking form, made with React and @material-ui
 
 Because of original assigment, all variable names are unfortunately in Finnish. 
 
