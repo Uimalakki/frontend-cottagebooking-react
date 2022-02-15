@@ -30,12 +30,18 @@ function VarausVahvistus(props) {
         }
       </DialogContent>
       <DialogActions>
-        <Button>Cancel</Button>
+        <Button 
+          onClick={() => {
+                          props.setNaytaVaraus(false);
+                         }}
+          >Cancel
+        </Button>
         <Button
           variant="contained"
           color="primary"
-          onClick={() => { props.setNaytaVaraus(false);
-                           props.tyhjennaKentat(); 
+          onClick={() => { 
+                            props.setNaytaVaraus(false);
+                            props.tyhjennaKentat(); 
                          }}
         >Confirm
         </Button>

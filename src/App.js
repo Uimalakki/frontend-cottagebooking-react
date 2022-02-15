@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import Mokit from "./components/Mokit.js";
-import mokitService from "./services/mokit"
+import CottageSelect from "./components/CottageSelect.js";
 import Kesto from "./components/Kesto.js";
 import LoppusiivouksenValitsin from "./components/LoppusiivouksenValitsin.js";
 import {Container, Button, TextField} from '@material-ui/core';
@@ -17,7 +16,6 @@ function App() {
   const [isCottageChosen, setIsCottageChosen] = useState(false);
   const [chosenDate, setChosenDate] = useState(new Date());
   const [price, setPrice] = useState(null);
-  const [cottages, setCottages] = useState([]);
   const [showBookButton, setShowBookButton] = useState(false)
 
   const teeVaraus = () => {
@@ -50,14 +48,6 @@ function App() {
   }, [chosenCottage, lengthOfStay, cleaning])
 
   useEffect(() => {
-    mokitService
-      .haeKaikki()
-      .then(haetutMokit => 
-        setCottages(haetutMokit)
-      )
-  }, []);
-
-  useEffect(() => {
     if(isCottageChosen && name) {
       setShowBookButton(true)
     } else {
@@ -69,9 +59,8 @@ function App() {
 
     <Container>
       <h1>Lomamökin varaus</h1>
-      <Mokit
-        otsikko="Valitse mökki"
-        mokit={cottages}
+      <CottageSelect
+        selectTitle="Choose a cottage:"
         setValittuMokki={setChosenCottage} 
         setOnkoMokkiValittu={setIsCottageChosen}
       />

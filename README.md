@@ -1,4 +1,8 @@
 ## A simple cottage booking form, made with React and @material-ui
-Started translation to English and other refactoring added from main branch.
+Differences from main branch:
 
-Uses an external database for cottages.
+-started naming translations to English
+
+-other refactoring
+
+-uses an external database for cottages
