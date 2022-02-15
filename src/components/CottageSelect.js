@@ -4,7 +4,7 @@ import cottagesService from '../services/mokit'
 
 function CottageSelect(props) {
 
-  const [isCottagesData, setIsCottageData] = useState(false);
+  const [isCottagesData, setIsCottagesData] = useState(false);
   const [cottages, setCottages] = useState([]);
 
   useEffect(() => {
@@ -13,32 +13,40 @@ function CottageSelect(props) {
       .then(data => 
         setCottages(data)
       )
-      setIsCottageData(true)
+      setIsCottagesData(true)
   }, []);
 
   return (
     <div>
+      {isCottagesData 
+      ? 
+        <div>
+          <InputLabel id="cottage-selection">{props.selectTitle}</InputLabel>
+          <Select
+            defaultValue={""}
+            labelId={props.selectTitle}
+            id="cottage-selection"
+            onChange={(e) => {
+              props.setValittuMokki(e.target.value);
+              props.setOnkoMokkiValittu(true)
+            }}
+          >
+            {cottages.map((cottage) => {
+              return (
+                <MenuItem
+                  key={cottage.id}
+                  value={cottage}>
+                  {cottage.name} {cottage.price}€/night
+                </MenuItem>
+              )
+            })}
+          </Select>
+        </div> 
+      : 
+        <CircularProgress color="inherit" />
+      }
       
-       <InputLabel id="cottage-selection">{props.selectTitle}</InputLabel>
-        <Select
-          defaultValue={""}
-          labelId={props.selectTitle}
-          id="cottage-selection"
-          onChange={(e) => {
-            props.setValittuMokki(e.target.value);
-            props.setOnkoMokkiValittu(true)
-          }}
-        >
-          {cottages.map((cottage) => {
-            return (
-              <MenuItem
-                key={cottage.id}
-                value={cottage}>
-                {cottage.name} {cottage.price}€/night
-              </MenuItem>
-            )
-          })}
-        </Select>
+      
        
       
     </div>
