@@ -6,6 +6,7 @@ function Mokit(props) {
     <div>
       <InputLabel id="mokkien-valinta">Valitse mökki:</InputLabel>
       <Select
+        defaultValue={""}
         labelId={props.otsikko}
         id="mokkien-valinta"
         onChange={(e) => {

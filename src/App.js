@@ -14,7 +14,7 @@ function App() {
   const [lengthOfStay, setLengthOfStay] = useState(1);
   const [cleaning, setCleaning] = useState(false);
   const [name, setName] = useState("");
-  const [isCottageChosen, setIsCottageChose] = useState(false);
+  const [isCottageChosen, setIsCottageChosen] = useState(false);
   const [chosenDate, setChosenDate] = useState(new Date());
   const [price, setPrice] = useState(null);
   const [cottages, setCottages] = useState([]);
@@ -29,7 +29,7 @@ function App() {
     setCleaning(false);
     setName("");
     setChosenDate(new Date());
-    isCottageChosen(false);
+    setIsCottageChosen(false);
     setPrice(null);
   }
 
@@ -73,7 +73,7 @@ function App() {
         otsikko="Valitse mökki"
         mokit={cottages}
         setValittuMokki={setChosenCottage} 
-        setOnkoMokkiValittu={setIsCottageChose}
+        setOnkoMokkiValittu={setIsCottageChosen}
       />
       <br/>
       <Kesto 
