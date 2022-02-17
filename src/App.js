@@ -19,11 +19,11 @@ function App() {
   const [price, setPrice] = useState(null);
   const [showBookButton, setShowBookButton] = useState(false)
 
-  const teeVaraus = () => {
+  const makeReservation = () => {
     setShowBooking(true);
   }
 
-  const tyhjennaKentat = () => {
+  const emptyFormFields = () => {
     setChosenCottage("");
     setCleaning(false);
     setName("");
@@ -32,20 +32,20 @@ function App() {
     setPrice(null);
   }
 
-  const muunnaValittuPvm = () => {
-    let kuukausi = chosenDate.getMonth() + 1;
-    let paiva = chosenDate.getDate();
-    let vuosi = chosenDate.getFullYear();
+  const transformDateFormat = () => {
+    let month = chosenDate.getMonth() + 1;
+    let day = chosenDate.getDate();
+    let year = chosenDate.getFullYear();
 
-    return paiva + "." + kuukausi + "." + vuosi;
+    return day + "." + month + "." + year;
   }
 
   useEffect(() => { 
-    let siivouksenHinta = 0;
+    let priceOfCleaning = 0;
     if(cleaning) {
-      siivouksenHinta = 100;
+      priceOfCleaning = 100;
     }
-    setPrice(lengthOfStay * chosenCottage.price + siivouksenHinta);
+    setPrice(lengthOfStay * chosenCottage.price + priceOfCleaning);
   }, [chosenCottage, lengthOfStay, cleaning])
 
   useEffect(() => {
@@ -57,13 +57,12 @@ function App() {
   }, [isCottageChosen, name]);
 
   const addBooking = () => {
-    
 
     const bookingObject = {
-      name: "first booking test from frontend",
-      price: 20,
-      cottage: "620abd7bc3fa672c8cc64784",
-      date: "test"
+      name: name,
+      price: price,
+      cottage: chosenCottage.id,
+      date: transformDateFormat(chosenDate)
     }
 
     bookingService
@@ -77,7 +76,7 @@ function App() {
   return (
 
     <Container>
-      <h1>Lomamökin varaus</h1>
+      <h1>Cottage booking</h1>
       <CottageSelect
         selectTitle="Choose a cottage:"
         setValittuMokki={setChosenCottage} 
@@ -107,17 +106,17 @@ function App() {
         variant="contained"
         color="primary"
         disabled={!showBookButton}
-        onClick={ () => {teeVaraus()}}
-        >Varaa mökki  
+        onClick={ () => {makeReservation()}}
+        >Book a cottage 
       </Button>
 
       {(price)
-        ? <div className="alert alert-success">Kokonaishinta: {price}</div>
-        : <div className="alert alert-warning">Loppuhinta ei ole vielä muodostunut</div>
+        ? <div className="alert alert-success">Total price: {price}</div>
+        : <div className="alert alert-warning">Total price hasn't formed</div>
       }
 
       <VarausVahvistus 
-        muunnaValittuPvm={muunnaValittuPvm}
+        muunnaValittuPvm={transformDateFormat}
         nimi={name}
         kesto={lengthOfStay}
         hinta={price}
@@ -126,7 +125,7 @@ function App() {
         onkoMokkiValittu={isCottageChosen}
         naytaVaraus={showBooking}
         setNaytaVaraus={setShowBooking}
-        tyhjennaKentat={tyhjennaKentat}
+        tyhjennaKentat={emptyFormFields}
         createBooking={addBooking}
       />
 

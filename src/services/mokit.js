@@ -6,4 +6,5 @@ const haeKaikki = () => {
     return request.then(response => response.data)
 }
 
+
 export default { haeKaikki }
