@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import CottageSelect from "./components/CottageSelect.js";
 import Kesto from "./components/Kesto.js";
+import bookingService from "./services/bookings"
 import LoppusiivouksenValitsin from "./components/LoppusiivouksenValitsin.js";
 import {Container, Button, TextField} from '@material-ui/core';
 import PvmValitsin from "./components/PvmValitsin.js";
@@ -55,6 +56,24 @@ function App() {
     }
   }, [isCottageChosen, name]);
 
+  const addBooking = () => {
+    
+
+    const bookingObject = {
+      name: "first booking test from frontend",
+      price: 20,
+      cottage: "620abd7bc3fa672c8cc64784",
+      date: "test"
+    }
+
+    bookingService
+      .create(bookingObject)
+      .then(returnedBooking => {
+        console.log(returnedBooking)
+      })
+      
+  }
+
   return (
 
     <Container>
@@ -108,6 +127,7 @@ function App() {
         naytaVaraus={showBooking}
         setNaytaVaraus={setShowBooking}
         tyhjennaKentat={tyhjennaKentat}
+        createBooking={addBooking}
       />
 
     </Container>

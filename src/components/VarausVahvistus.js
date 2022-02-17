@@ -41,7 +41,8 @@ function VarausVahvistus(props) {
           color="primary"
           onClick={() => { 
                             props.setNaytaVaraus(false);
-                            props.tyhjennaKentat(); 
+                            props.tyhjennaKentat();
+                            props.createBooking();
                          }}
         >Confirm
         </Button>
