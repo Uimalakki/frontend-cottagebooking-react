@@ -6,6 +6,4 @@ Differences from main branch:
 
 -other refactoring
 
--uses an external database for cottages
-
--uses an external database for cottages
+-uses an external database for cottages and bookings
