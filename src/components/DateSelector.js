@@ -3,7 +3,7 @@ import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import fiLocale from "date-fns/locale/fi";
 import { TextField } from "@material-ui/core";
 
-function PvmValitsin(props) {
+function DateSelector(props) {
 
     return (
         <MuiPickersUtilsProvider utils={DateFnsUtils} locale={fiLocale}>
@@ -19,5 +19,5 @@ function PvmValitsin(props) {
     )
 }
 
-export default PvmValitsin;
+export default DateSelector;
 

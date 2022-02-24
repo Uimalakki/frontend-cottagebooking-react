@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import CottageSelect from "./components/CottageSelect.js";
-import Kesto from "./components/Kesto.js";
+import LengthOfStaySlider from "./components/LengthOfStaySlider.js";
 import bookingService from "./services/bookings"
-import LoppusiivouksenValitsin from "./components/LoppusiivouksenValitsin.js";
-import {Container, Button, TextField} from '@material-ui/core';
-import PvmValitsin from "./components/PvmValitsin.js";
+import CheckboxSelector from "./components/CheckboxSelector.js";
+import { Container, Button, TextField } from '@material-ui/core';
+import DateSelector from "./components/DateSelector.js";
 import VarausVahvistus from "./components/VarausVahvistus.js";
 
 function App() {
@@ -78,27 +78,28 @@ function App() {
     <Container>
       <h1>Cottage booking</h1>
       <CottageSelect
-        selectTitle="Choose a cottage:"
-        setValittuMokki={setChosenCottage} 
-        setOnkoMokkiValittu={setIsCottageChosen}
+        selectTitle='Choose a cottage:'
+        chooseCottage={setChosenCottage} 
+        setIsCottageChosen={setIsCottageChosen}
       />
       <br/>
-      <Kesto 
-        setKesto={setLengthOfStay} 
-        kesto={lengthOfStay}
+      <LengthOfStaySlider 
+        setLength={setLengthOfStay} 
+        length={lengthOfStay}
+        sliderTitle='The length of stay by days:'
       />
-      <PvmValitsin 
+      <DateSelector 
         valittuPvm={chosenDate}
         setValittuPvm={setChosenDate}
       />
-      <LoppusiivouksenValitsin 
+      <CheckboxSelector 
         checkboxArvo={setCleaning}
-        checkboxNimi='Loppusiivous'
+        checkboxNimi='Room cleaning'
       />
       <TextField
-        label="Varaajan nimi"
+        label="Name of booker"
         value={name}
-        placeholder="Etunimi Sukunimi"
+        placeholder="Firstname Lastname"
         onChange={(e) => {setName(e.target.value)}}
         >
       </TextField><br/>

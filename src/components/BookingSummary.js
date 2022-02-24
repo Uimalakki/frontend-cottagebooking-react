@@ -1,31 +1,31 @@
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@material-ui/core';
 import {Button} from '@material-ui/core';
 
-function VarausVahvistus(props) {
+function BookingSummary(props) {
 
-  const onkoLoppusiivousta = (booleanArvo) => {
-    if (booleanArvo) {
-      return ("Kyllä");
+  const isThereCleaning = (booleanValue) => {
+    if (booleanValue) {
+      return ("Yes");
     } else {
-      return ("Ei");
+      return ("No");
     }
   }
 
   return (
     <Dialog open={props.naytaVaraus} fullWidth={true}>
-      <DialogTitle>Mökin varausvahvistus</DialogTitle>
+      <DialogTitle>Cottage booking summary</DialogTitle>
       <DialogContent>
         {(props.onkoMokkiValittu)
           ? <DialogContentText>
-            <div>Varaajan nimi: {props.nimi}</div>
-            <div>Mökin nimi: {props.valittuMokki.name}</div>
-            <div>Alkamispäivämäärä: {props.muunnaValittuPvm()}</div>
-            <div>Kesto: {props.kesto} päivää</div>
-            <div>Kokonaishinta: {props.hinta} euroa</div>
-            <div>Loppusiivous: {onkoLoppusiivousta(props.siivous)}</div>
+            <div>Booker name: {props.nimi}</div>
+            <div>Cottage name: {props.valittuMokki.name}</div>
+            <div>Start date: {props.muunnaValittuPvm()}</div>
+            <div>Length of stay: {props.kesto} day(s)</div>
+            <div>Total price: {props.hinta} euros</div>
+            <div>Cleaning: {isThereCleaning(props.siivous)}</div>
           </DialogContentText>
           : <DialogContentText>
-            <div>Mökkiä ei ole valittu!</div>
+            <div>Cottage hasn't been chosen</div>
           </DialogContentText>
         }
       </DialogContent>
@@ -51,4 +51,4 @@ function VarausVahvistus(props) {
   )
 }
 
-export default VarausVahvistus 
+export default BookingSummary 

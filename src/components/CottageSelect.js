@@ -1,4 +1,4 @@
-import { Select, MenuItem, InputLabel, CircularProgress, Backdrop } from '@material-ui/core';
+import { Select, MenuItem, InputLabel, CircularProgress } from '@material-ui/core';
 import { useEffect, useState } from 'react'
 import cottagesService from '../services/mokit'
 
@@ -27,8 +27,8 @@ function CottageSelect(props) {
             labelId={props.selectTitle}
             id="cottage-selection"
             onChange={(e) => {
-              props.setValittuMokki(e.target.value);
-              props.setOnkoMokkiValittu(true)
+              props.chooseCottage(e.target.value);
+              props.setIsCottageChosen(true)
             }}
           >
             {cottages.map((cottage) => {
@@ -44,15 +44,9 @@ function CottageSelect(props) {
         </div> 
       : 
         <CircularProgress color="inherit" />
-      }
-      
-      
-       
-      
+      }  
     </div>
-  
   )
-
 }
 
 export default CottageSelect;
