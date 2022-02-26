@@ -5,7 +5,7 @@ import bookingService from "./services/bookings"
 import CheckboxSelector from "./components/CheckboxSelector.js";
 import { Container, Button, TextField } from '@material-ui/core';
 import DateSelector from "./components/DateSelector.js";
-import VarausVahvistus from "./components/VarausVahvistus.js";
+import BookingSummary from "./components/BookingSummary.js";
 
 function App() {
 
@@ -116,17 +116,17 @@ function App() {
         : <div className="alert alert-warning">Total price hasn't formed</div>
       }
 
-      <VarausVahvistus 
-        muunnaValittuPvm={transformDateFormat}
-        nimi={name}
-        kesto={lengthOfStay}
-        hinta={price}
-        siivous={cleaning}
-        valittuMokki={chosenCottage}
-        onkoMokkiValittu={isCottageChosen}
-        naytaVaraus={showBooking}
-        setNaytaVaraus={setShowBooking}
-        tyhjennaKentat={emptyFormFields}
+      <BookingSummary 
+        transformDateFormat={transformDateFormat}
+        nameOfBooker={name}
+        lengthOfStay={lengthOfStay}
+        priceOfBooking={price}
+        cleaning={cleaning}
+        chosenCottage={chosenCottage}
+        isCottageChosen={isCottageChosen}
+        showBooking={showBooking}
+        showBookingSummary={setShowBooking}
+        emptyFormFields={emptyFormFields}
         createBooking={addBooking}
       />
 

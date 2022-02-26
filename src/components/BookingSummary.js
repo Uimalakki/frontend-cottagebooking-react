@@ -12,17 +12,17 @@ function BookingSummary(props) {
   }
 
   return (
-    <Dialog open={props.naytaVaraus} fullWidth={true}>
+    <Dialog open={props.showBooking} fullWidth={true}>
       <DialogTitle>Cottage booking summary</DialogTitle>
       <DialogContent>
-        {(props.onkoMokkiValittu)
+        {(props.isCottageChosen)
           ? <DialogContentText>
-            <div>Booker name: {props.nimi}</div>
-            <div>Cottage name: {props.valittuMokki.name}</div>
-            <div>Start date: {props.muunnaValittuPvm()}</div>
-            <div>Length of stay: {props.kesto} day(s)</div>
-            <div>Total price: {props.hinta} euros</div>
-            <div>Cleaning: {isThereCleaning(props.siivous)}</div>
+            <div>Booker name: {props.nameOfBooker}</div>
+            <div>Cottage name: {props.chosenCottage.name}</div>
+            <div>Start date: {props.transformDateFormat()}</div>
+            <div>Length of stay: {props.lengthOfStay} day(s)</div>
+            <div>Total price: {props.priceOfBooking} euros</div>
+            <div>Cleaning: {isThereCleaning(props.cleaning)}</div>
           </DialogContentText>
           : <DialogContentText>
             <div>Cottage hasn't been chosen</div>
@@ -32,7 +32,7 @@ function BookingSummary(props) {
       <DialogActions>
         <Button 
           onClick={() => {
-                          props.setNaytaVaraus(false);
+                          props.showBookingSummary(false);
                          }}
           >Cancel
         </Button>
@@ -40,8 +40,8 @@ function BookingSummary(props) {
           variant="contained"
           color="primary"
           onClick={() => { 
-                            props.setNaytaVaraus(false);
-                            props.tyhjennaKentat();
+                            props.showBookingSummary(false);
+                            props.emptyFormFields();
                             props.createBooking();
                          }}
         >Confirm
